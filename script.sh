@@ -56,6 +56,8 @@ cd /mnt/server/steamcmd || {
 
 # SteamCMD fails otherwise for some reason, even running as root.
 # This is changed at the end of the install process anyways.
+
+# Install SL with SteamCMD
 chown -R root:root /mnt
 export HOME=/mnt/server
 
@@ -65,11 +67,15 @@ else
   ./steamcmd.sh +force_install_dir /mnt/server +login anonymous +app_update "${SRCDS_APPID}" -beta ${BETA_TAG} validate +quit
 fi
 
-# Install SL with SteamCMD
 cd /mnt/server || {
   echo "$(tput setaf 1) FAILED TO MOUNT TO /mnt/server"
   exit
 }
+
+# Install Secret Admin
+cd /mnt/server
+wget -q https://github.com/Jesus-QC/SecretAdmin/releases/download/0.0.1.5/SecretAdmin
+chmod +x SecretAdmin
 
 #Start egg configuration
 mkdir .egg
@@ -82,19 +88,19 @@ chmod +x ./.egg/start.sh
 if [ "${INSTALL_DIBOT}" == "true" ]; then
   echo "#!/bin/bash
     ./.egg/DIBot/DiscordIntegration.Bot > /dev/null &
-    ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
-  echo "$(tput setaf 4)Finished configuring start.sh for LocalAdmin and Discord Integration.$(tput setaf 0)"
+    ./SecretAdmin \${SERVER_PORT}" >>./.egg/start.sh
+  echo "$(tput setaf 4)Finished configuring start.sh for SecretAdmin and Discord Integration.$(tput setaf 0)"
 
 elif [ "${INSTALL_SCPBOT}" == "true" ]; then
   echo "#!/bin/bash
     ./.egg/SCPDBot/SCPDiscordBot_Linux &
-    ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
-  echo "$(tput setaf 4)Finished configuring start.sh for LocalAdmin and SCP Discord.$(tput setaf 0)"
+    ./SecretAdmin \${SERVER_PORT}" >>./.egg/start.sh
+  echo "$(tput setaf 4)Finished configuring start.sh for SecretAdmin and SCP Discord.$(tput setaf 0)"
 
 else
   echo "#!/bin/bash
-    ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
-  echo "$(tput setaf 4)Finished configuring start.sh for LocalAdmin.$(tput setaf 0)"
+    ./SecretAdmin \${SERVER_PORT}" >>./.egg/start.sh
+  echo "$(tput setaf 4)Finished configuring start.sh for SecretAdmin.$(tput setaf 0)"
 
 fi
 # Install Discord Integration Bot
