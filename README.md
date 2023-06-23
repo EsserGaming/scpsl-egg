@@ -1,10 +1,14 @@
-# EXILED-SCP-SL-egg
+# EXILED-SCP-SL-egg (Secret Admin)
 [![Trigger: Push action](https://github.com/EsserGaming/EXILED-SCP-SL-egg/actions/workflows/workflow.yml/badge.svg?branch=master)](https://github.com/EsserGaming/EXILED-SCP-SL-egg/actions/workflows/workflow.yml)
 
 A pterodactyl egg for SCP:SL that has [EXILED](https://github.com/Exiled-Team/EXILED) support plus some extra features.
 
-Features:
+## This is the [Secret Admin](https://github.com/Jesus-QC/SecretAdmin) version of the egg. 
+If there are any issues please create an [issue](https://github.com/EsserGaming/EXILED-SCP-SL-egg/issues/new) and make sure to specify which version you're using.
 
+# Features:
+
+- Uses Secret Admin
 - Beta tag support.
 - EXILED support.
 - Option to choose the pre-release or release of EXILED.
