@@ -1,6 +1,5 @@
 # EXILED-SCP-SL-egg
-[![wakatime](https://wakatime.com/badge/github/Parkeymon/EXILED-SCP-SL-egg.svg)](https://wakatime.com/badge/github/Parkeymon/EXILED-SCP-SL-egg)
-[![Trigger: Push action](https://github.com/Parkeymon/EXILED-SCP-SL-egg/actions/workflows/shellcheck.yml/badge.svg?branch=master)](https://github.com/Parkeymon/EXILED-SCP-SL-egg/actions/workflows/shellcheck.yml)
+[![Trigger: Push action](https://github.com/EsserGaming/EXILED-SCP-SL-egg/actions/workflows/workflow.yml/badge.svg?branch=master)](https://github.com/EsserGaming/EXILED-SCP-SL-egg/actions/workflows/workflow.yml)
 
 A pterodactyl egg for SCP:SL that has [EXILED](https://github.com/Exiled-Team/EXILED) support plus some extra features.
 
@@ -57,7 +56,7 @@ If you would like to dowload from private repositories you need to give private 
 ## Custom Docker Images
 
 ### Server Image
-[![Server Image](https://github.com/Parkeymon/docker-scpsl/actions/workflows/docker-image.yml/badge.svg?branch=master)](https://github.com/Parkeymon/docker-scpsl/actions/workflows/docker-image.yml)
+[![Server Image](https://github.com/EsserGaming/docker-scpsl/actions/workflows/docker-image.yml/badge.svg?branch=master)](https://github.com/EsserGaming/docker-scpsl/actions/workflows/docker-image.yml)
 
 ### Script Container
-[![Script Container](https://github.com/Parkeymon/scpsl-install-docker/actions/workflows/docker-image.yml/badge.svg?branch=master)](https://github.com/Parkeymon/scpsl-install-docker/actions/workflows/docker-image.yml)
+[![Script Container](https://github.com/EsserGaming/scpsl-install-docker/actions/workflows/docker-image.yml/badge.svg?branch=master)](https://github.com/EsserGaming/scpsl-install-docker/actions/workflows/docker-image.yml)
