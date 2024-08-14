@@ -22,7 +22,7 @@ $(tput setaf 2)This installer was created by $(tput setaf 1)Parkeymon$(tput seta
 "
 
 # Egg version checking, do not touch!
-currentVersion="2.5.6"
+currentVersion="2.5.7"
 latestVersion=$(curl --silent "https://api.github.com/repos/EsserGaming/EXILED-SCP-SL-egg/releases/latest" | jq -r .tag_name)
 
 if [ "${currentVersion}" == "${latestVersion}" ]; then
@@ -157,7 +157,7 @@ if [ "${INSTALL_EXILED}" == "true" ]; then
   mkdir .config/
   echo "$(tput setaf 4)Downloading latest $(tput setaf 1)EXILED$(tput setaf 4) Installer"
   rm Exiled.Installer-Linux
-  wget -q https://github.com/Exiled-Official/EXILED/releases/latest/download/Exiled.Installer-Linux
+  wget -q https://github.com/ExMod-Team/EXILED/releases/latest/download/Exiled.Installer-Linux
   chmod +x ./Exiled.Installer-Linux
 
   if [ "${EXILED_PRE}" == "true" ]; then
