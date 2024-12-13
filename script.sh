@@ -22,7 +22,7 @@ $(tput setaf 2)This installer was created by $(tput setaf 1)Parkeymon$(tput seta
 "
 
 # Egg version checking, do not touch!
-currentVersion="2.5.6"
+currentVersion="2.5.7"
 latestVersion=$(curl --silent "https://api.github.com/repos/EsserGaming/EXILED-SCP-SL-egg/releases/latest" | jq -r .tag_name)
 
 if [ "${currentVersion}" == "${latestVersion}" ]; then
@@ -86,7 +86,7 @@ if [ "${INSTALL_DIBOT}" == "true" ]; then
     ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
   echo "$(tput setaf 4)Finished configuring start.sh for LocalAdmin and Discord Integration.$(tput setaf 0)"
 
-elif [ "${INSTALL_SCPBOT}" == "true" ]; then
+elif [ "${INSTALL_SCPDBOT}" == "true" ]; then
   echo "#!/bin/bash
     ./.egg/SCPDBot/SCPDiscordBot_Linux --config ./.egg/SCPDBot/config.yml &
     ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
@@ -125,7 +125,7 @@ else
   echo "Skipping Discord Integration install."
 fi
 #Install SCPDiscord Bot
-if [ "${INSTALL_SCPBOT}" == "true" ]; then
+if [ "${INSTALL_SCPDBOT}" == "true" ]; then
   mkdir /mnt/server/.egg/SCPDBot
 
   echo "Removing old SCPDiscord Bot"
@@ -135,8 +135,13 @@ if [ "${INSTALL_SCPBOT}" == "true" ]; then
   wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/SCPDiscordBot_Linux -P /mnt/server/.egg/SCPDBot
 
   chmod +x /mnt/server/.egg/SCPDBot/SCPDiscordBot_Linux
+else
+  echo "Skipping SCPDiscord Bot install."
+fi
 
  #Install SCPDiscord Plugin
+ if [ "${INSTALL_SCPDPLUGIN}" == "true" ]; then
+  echo "Installing SCPDiscord Plugin"
   echo "Removing old SCPDiscord Plugin"
   rm '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global/SCPDiscord.dll'
 
@@ -149,7 +154,7 @@ if [ "${INSTALL_SCPBOT}" == "true" ]; then
   unzip -oq '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global/dependencies.zip' -d '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global/'
   rm '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global/dependencies.zip'
 else
-  echo "Skipping SCPDiscord install."
+  echo "Skipping SCPDiscord Plugin install."
 fi
 
 if [ "${INSTALL_EXILED}" == "true" ]; then
