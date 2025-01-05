@@ -18,11 +18,11 @@ $(tput setaf 0)
 "
 
 echo "
-$(tput setaf 2)This installer was created by $(tput setaf 1)Parkeymon$(tput setaf 0) and maintained by EsserGaming.
+$(tput setaf 2)This installer was created by $(tput setaf 1)Parkeymon$(tput setaf 2) and forked by $(tput setaf 6)EsserGaming$(tput setaf 2).$(tput setaf 0)
 "
 
 # Egg version checking, do not touch!
-currentVersion="2.5.7"
+currentVersion="2.5.8"
 latestVersion=$(curl --silent "https://api.github.com/repos/EsserGaming/EXILED-SCP-SL-egg/releases/latest" | jq -r .tag_name)
 
 if [ "${currentVersion}" == "${latestVersion}" ]; then
@@ -73,20 +73,14 @@ cd /mnt/server || {
 }
 
 #Start egg configuration
-mkdir .egg
+mkdir -p .egg
 
 echo "$(tput setaf 4)Configuring start.sh$(tput setaf 0)"
 rm ./.egg/start.sh
 touch "./.egg/start.sh"
 chmod +x ./.egg/start.sh
 
-if [ "${INSTALL_DIBOT}" == "true" ]; then
-  echo "#!/bin/bash
-    ./.egg/DIBot/DiscordIntegration.Bot > /dev/null &
-    ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
-  echo "$(tput setaf 4)Finished configuring start.sh for LocalAdmin and Discord Integration.$(tput setaf 0)"
-
-elif [ "${INSTALL_SCPDBOT}" == "true" ]; then
+if [ "${INSTALL_SCPDBOT}" == "true" ]; then
   echo "#!/bin/bash
     ./.egg/SCPDBot/SCPDiscordBot_Linux --config ./.egg/SCPDBot/config.yml &
     ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
@@ -98,35 +92,10 @@ else
   echo "$(tput setaf 4)Finished configuring start.sh for LocalAdmin.$(tput setaf 0)"
 
 fi
-# Install Discord Integration Bot
-if [ "${INSTALL_DIBOT}" == "true" ]; then
-  mkdir /mnt/server/.egg/DIBot
-  echo "Removing old Discord Integration"
-  rm /mnt/server/.egg/DIBot/DiscordIntegration.Bot
-  echo "$(tput setaf 4)Installing latest Discord Integration bot version."
-  wget -q https://github.com/Exiled-Team/DiscordIntegration/releases/latest/download/DiscordIntegration.Bot -P /mnt/server/.egg/DIBot
 
-  chmod +x /mnt/server/.egg/DIBot/DiscordIntegration.Bot
-
-# Install Discord Integration Plugin
-  echo "Installing Latest Discord Integration Plugin.."
-
-  echo "Removing old Discord Integration"
-  rm /mnt/server/.config/EXILED/Plugins/DiscordIntegration.dll
-
-  echo "$(tput setaf 5)Grabbing plugin and dependencies."
-  wget -q https://github.com/Exiled-Team/DiscordIntegration/releases/latest/download/Plugin.tar.gz -P /mnt/server/.config/EXILED/Plugins
-
-  echo "Extracting..."
-  tar xzvf /mnt/server/.config/EXILED/Plugins/Plugin.tar.gz -C /mnt/server/.config/EXILED/Plugins
-  rm /mnt/server/.config/EXILED/Plugins/Plugin.tar.gz
-
-else
-  echo "Skipping Discord Integration install."
-fi
 #Install SCPDiscord Bot
 if [ "${INSTALL_SCPDBOT}" == "true" ]; then
-  mkdir /mnt/server/.egg/SCPDBot
+  mkdir -p /mnt/server/.egg/SCPDBot
 
   echo "Removing old SCPDiscord Bot"
   rm /mnt/server/.egg/SCPDBot/SCPDiscordBot_Linux
@@ -159,7 +128,7 @@ fi
 
 if [ "${INSTALL_EXILED}" == "true" ]; then
   echo "$(tput setaf 4)Downloading $(tput setaf 1)EXILED$(tput setaf 0).."
-  mkdir .config/
+  mkdir -p .config/
   echo "$(tput setaf 4)Downloading latest $(tput setaf 1)EXILED$(tput setaf 4) Installer"
   rm Exiled.Installer-Linux
   wget -q https://github.com/ExMod-Team/EXILED/releases/latest/download/Exiled.Installer-Linux
