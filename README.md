@@ -3,12 +3,12 @@
 # EXILED-SCP-SL-egg
 **A Pterodactyl egg for SCP: Secret Laboratory that supports EXILED and extras.**
 
-> [!WARNING]
-> The official EXILED repository has been taken down again. The developers haven't announced a new repo for the project, I will update the egg when that happens.
+> [!Note]
+> The official EXILED repository has been reinstated.
 
 ## Features:
 - Game beta tag support. (e.g for public betas)
-- Options to choose the release, pre-release or a specific version of ~~[EXILED](https://github.com/ExMod-Team/EXILED)~~ (Currently unavailable, the egg won't be able to install).
+- Options to choose the release, pre-release or a specific version of [EXILED](https://github.com/ExSLMod-Team/EXILED).
 - Support to run the [SCPDiscord](https://github.com/KarlOfDuty/SCPDiscord/) Bot alongside the plugin.
 - Automiatically checks if the egg is up to date and notifies you when there is an update.
 - FFmpeg support (for use with audio player plugins).
