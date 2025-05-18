@@ -18,7 +18,7 @@ $(tput setaf 0)
 "
 
 echo "
-$(tput setaf 2)This installer was created by $(tput setaf 1)Parkeymon$(tput setaf 2) and forked by $(tput setaf 6)EsserGaming$(tput setaf 2).$(tput setaf 0)
+$(tput setaf 2)This installer was created by $(tput setaf 1)Parkeymon$(tput setaf 2) and maintained by $(tput setaf 6)EsserGaming$(tput setaf 2).$(tput setaf 0)
 "
 
 # Egg version checking, do not touch!
@@ -131,7 +131,7 @@ if [ "${INSTALL_EXILED}" == "true" ]; then
   mkdir -p .config/
   echo "$(tput setaf 4)Downloading latest $(tput setaf 1)EXILED$(tput setaf 4) Installer"
   rm Exiled.Installer-Linux
-  wget -q https://github.com/ExMod-Team/EXILED/releases/latest/download/Exiled.Installer-Linux
+  wget -q https://github.com/ExSLMod-Team/EXILED/releases/latest/download/Exiled.Installer-Linux
   chmod +x ./Exiled.Installer-Linux
 
   if [ "${EXILED_PRE}" == "true" ]; then
