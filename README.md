@@ -13,8 +13,7 @@
 
 ## Using the SCPDiscord bot
 1. Go to the startup tab in your server, then set `INSTALL SCP DISCORD?` to `true`.
-2. Under the settings tab, press "Reinstall Server" and wait until the server has finished the process.
-**Re-installing will *not* delete your important files.**
+2. Under the settings tab, press "Reinstall Server" and wait until the server has finished the process. **Re-installing will *not* delete your important files.**
 1. Go to the files tab, and go to `/.egg/SCPDBot` and open `config.yml` to configure the bot.
 > [!TIP]
 > **To configure the bot and plugin, read the [installation guide](https://github.com/KarlOfDuty/SCPDiscord/blob/main/docs/Installation.md).**
