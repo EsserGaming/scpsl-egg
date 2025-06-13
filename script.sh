@@ -22,8 +22,8 @@ $(tput setaf 2)This installer was created by $(tput setaf 1)Parkeymon$(tput seta
 "
 
 # Egg version checking, do not touch!
-currentVersion="2.5.9"
-latestVersion=$(curl --silent "https://api.github.com/repos/EsserGaming/EXILED-SCP-SL-egg/releases/latest" | jq -r .tag_name)
+currentVersion="3.0.0"
+latestVersion=$(curl --silent "https://api.github.com/repos/EsserGaming/scpsl-egg/releases/latest" | jq -r .tag_name)
 
 if [ "${currentVersion}" == "${latestVersion}" ]; then
   echo "$(tput setaf 2)Installer is up to date"
@@ -35,7 +35,7 @@ else
     Current Version: $(tput setaf 1)${currentVersion}
     Latest: $(tput setaf 2)${latestVersion}
 
-  $(tput setaf 3)Please update to the latest version found here: https://github.com/EsserGaming/EXILED-SCP-SL-egg/releases/latest
+  $(tput setaf 3)Please update to the latest version found here: https://github.com/EsserGaming/scpsl-egg/releases/latest
  $(tput setaf 4)Installation will start in 3 seconds...
 
   "
@@ -112,16 +112,16 @@ fi
  if [ "${INSTALL_SCPDPLUGIN}" == "true" ]; then
   echo "Installing SCPDiscord Plugin"
   echo "Removing old SCPDiscord Plugin"
-  rm '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global/SCPDiscord.dll'
+  rm '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global/SCPDiscord.dll'
 
   echo "$(tput setaf 5)Grabbing plugin and dependencies."
-  wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/dependencies.zip -P '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global'
-  wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/SCPDiscord.dll -P '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global'
+  wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/dependencies.zip -P '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global'
+  wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/SCPDiscord.dll -P '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global'
 
 
   echo "Extracting dependencies..."
-  unzip -oq '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global/dependencies.zip' -d '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global/'
-  rm '/mnt/server/.config/SCP Secret Laboratory/PluginAPI/plugins/global/dependencies.zip'
+  unzip -oq '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/dependencies.zip' -d '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global/'
+  rm '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/dependencies.zip'
 else
   echo "Skipping SCPDiscord Plugin install."
 fi
