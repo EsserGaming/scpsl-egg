@@ -22,7 +22,7 @@ $(tput setaf 2)This installer was created by $(tput setaf 1)Parkeymon$(tput seta
 "
 
 # Egg version checking, do not touch!
-currentVersion="3.0.0"
+currentVersion="3.1.0"
 latestVersion=$(curl --silent "https://api.github.com/repos/EsserGaming/scpsl-egg/releases/latest" | jq -r .tag_name)
 
 if [ "${currentVersion}" == "${latestVersion}" ]; then
@@ -82,7 +82,7 @@ chmod +x ./.egg/start.sh
 
 if [ "${INSTALL_SCPDBOT}" == "true" ]; then
   echo "#!/bin/bash
-    ./.egg/SCPDBot/SCPDiscordBot_Linux --config ./.egg/SCPDBot/config.yml &
+    ./.egg/SCPDBot/scpdiscord-sc --config ./.egg/SCPDBot/config.yml &
     ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
   echo "$(tput setaf 4)Finished configuring start.sh for LocalAdmin and SCPDiscord.$(tput setaf 0)"
 
@@ -98,12 +98,12 @@ if [ "${INSTALL_SCPDBOT}" == "true" ]; then
   mkdir -p /mnt/server/.egg/SCPDBot
 
   echo "Removing old SCPDiscord Bot"
-  rm /mnt/server/.egg/SCPDBot/SCPDiscordBot_Linux
+  rm /mnt/server/.egg/SCPDBot/scpdiscord-sc
 
   echo "$(tput setaf 4)Installing latest SCP Discord Bot."
-  wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/SCPDiscordBot_Linux -P /mnt/server/.egg/SCPDBot
+  wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/scpdiscord-sc -P /mnt/server/.egg/SCPDBot
 
-  chmod +x /mnt/server/.egg/SCPDBot/SCPDiscordBot_Linux
+  chmod +x /mnt/server/.egg/SCPDBot/scpdiscord-sc
 else
   echo "Skipping SCPDiscord Bot install."
 fi
