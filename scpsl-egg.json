@@ -42,12 +42,12 @@
         },
         {
             "name": "Beta Tag",
-            "description": "Set to \"public\" for no beta. For betas with passwords add \"-betapassword\" then add the password afterward.",
+            "description": "Keep empty for no beta. For betas with passwords add \"-betapassword\" then add the password afterward.",
             "env_variable": "BETA_TAG",
-            "default_value": "public",
+            "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "string|max:200",
+            "rules": "max:200",
             "field_type": "text"
         },
         {
@@ -82,7 +82,7 @@
         },
         {
             "name": "Install SCPDiscord Plugin?",
-            "description": "Disable if you use a plugin manager. The plugin will be installed for NWAPI.",
+            "description": "Disable if you use a plugin manager. The plugin will be installed for LabAPI.",
             "env_variable": "INSTALL_SCPDPLUGIN",
             "default_value": "false",
             "user_viewable": true,
