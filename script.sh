@@ -98,33 +98,32 @@ if [ "${INSTALL_SCPDBOT}" == "true" ]; then
   mkdir -p /mnt/server/.egg/SCPDBot
 
   echo "Removing old SCPDiscord Bot"
-  rm /mnt/server/.egg/SCPDBot/scpdiscord-sc # Remove previous bot version
-  rm /mnt/server/.egg/SCPDBot/scpdiscord
+  rm /mnt/server/.egg/SCPDBot/scpdiscord 
 
   echo "$(tput setaf 4)Installing latest SCP Discord Bot."
   wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/scpdiscord -P /mnt/server/.egg/SCPDBot
 
   chmod +x /mnt/server/.egg/SCPDBot/scpdiscord
 else
-  echo "Skipping SCPDiscord Bot install."
+  echo $(tput setaf 3)"Skipping SCPDiscord Bot install."$(tput setaf 0)
 fi
 
  #Install SCPDiscord Plugin
  if [ "${INSTALL_SCPDPLUGIN}" == "true" ]; then
-  echo "Installing SCPDiscord Plugin"
   echo "Removing old SCPDiscord Plugin"
   rm '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global/SCPDiscord.dll'
+  echo "Installing SCPDiscord Plugin"
 
   echo "$(tput setaf 5)Grabbing plugin and dependencies."
-  wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/dependencies.zip -P '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global'
+  wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/dependencies.zip -P '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global'
   wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/SCPDiscord.dll -P '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global'
 
 
   echo "Extracting dependencies..."
-  unzip -oq '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/dependencies.zip' -d '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global/'
+  unzip -oq '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/dependencies.zip' -d '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/'
   rm '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/dependencies.zip'
 else
-  echo "Skipping SCPDiscord Plugin install."
+  echo $(tput setaf 3)"Skipping SCPDiscord Plugin install."$(tput setaf 0)
 fi
 
 if [ "${INSTALL_EXILED}" == "true" ]; then
@@ -132,33 +131,33 @@ if [ "${INSTALL_EXILED}" == "true" ]; then
   mkdir -p .config/
   echo "$(tput setaf 4)Downloading latest $(tput setaf 1)EXILED$(tput setaf 4) Installer"
   rm Exiled.Installer-Linux
-  wget -q https://github.com/ExSLMod-Team/EXILED/releases/latest/download/Exiled.Installer-Linux
+  wget -q https://github.com/ExMod-Team/EXILED/releases/latest/download/Exiled.Installer-Linux
   chmod +x ./Exiled.Installer-Linux
 
   if [ "${EXILED_PRE}" == "true" ]; then
     echo "$(tput setaf 4)Installing $(tput setaf 1)EXILED (pre-release)..."
-    ./Exiled.Installer-Linux --pre-releases
+    ./Exiled.Installer-Linux -p /mnt/server/ --pre-releases 
 
   elif [ "${EXILED_PRE}" == "false" ]; then
     echo "$(tput setaf 4)Installing $(tput setaf 1)EXILED$(tput setaf 0)..."
-    ./Exiled.Installer-Linux
+    ./Exiled.Installer-Linux -p /mnt/server/ --target-version v9.14.2 # temporary workaround for latest version
 
   else
     echo "$(tput setaf 4)Installing $(tput setaf 1)EXILED$(tput setaf 0) version: ${EXILED_PRE} .."
-    ./Exiled.Installer-Linux --target-version "${EXILED_PRE}"
+    ./Exiled.Installer-Linux -p /mnt/server/ --target-version "${EXILED_PRE}"
 
   fi
 else
-  echo "Skipping Exiled installation."
+  echo $(tput setaf 3)"Skipping Exiled installation."$(tput setaf 0)
 fi
 
 
 # Cleanup :p
-echo "$(tput setaf 2)Cleaning up..$(tput sgr 0)"
-rm /mnt/server/core
-rm /mnt/server/Exiled.Installer-Linux
-rm -rf /mnt/server/?
-rm -rf /mnt/server/.local
-rm /mnt/server/config-gameplay.txt
+echo "$(tput setaf 4)Cleaning up..$(tput sgr 0)"
+rm /mnt/server/core > /dev/null 2>&1
+rm /mnt/server/Exiled.Installer-Linux > /dev/null 2>&1
+rm /mnt/server/config-gameplay.txt > /dev/null 2>&1
+rm -r /mnt/server/? > /dev/null 2>&1
+rm -r /mnt/server/.local > /dev/null 2>&1
 
 echo "$(tput setaf 2)Installation Complete!$(tput sgr 0)"

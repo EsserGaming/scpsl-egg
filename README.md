@@ -7,7 +7,7 @@
 - Game beta tag support (e.g for public betas)
 - Options to choose the release, pre-release or a specific version of [EXILED](https://github.com/ExSLMod-Team/EXILED)
 - Support to run the [SCPDiscord](https://github.com/KarlOfDuty/SCPDiscord/) Bot alongside the plugin
-- Automiatically checks if the egg is up to date and notifies you when there is an update
+- Automatically checks if the egg is up to date and notifies you when there is an update
 - FFmpeg support (for use with audio player plugins)
 
 
@@ -22,5 +22,5 @@
 ## Custom Docker Images
 ### Server Image
 https://github.com/EsserGaming/docker-scpsl
-### Script Container
+### Script Installation Container
 https://github.com/EsserGaming/scpsl-install-docker
