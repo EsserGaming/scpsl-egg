@@ -61,9 +61,10 @@ export HOME=/mnt/server
 
 if [ "${BRANCH_TAG}" == "" ]; then
   echo "$(tput setaf 4)Installing SCP:SL..$(tput sgr0)"
-  ./DepotDownloader -app 996560 -depot 996562 -dir /mnt/server -validate > /dev/null # silence output, might remove later
+  ./DepotDownloader -app 996560 -depot 996562 -dir /mnt/server -validate > /dev/null # silence output
   echo "$(tput setaf 2)Done.$(tput sgr0)"
 else
+  echo "$(tput setaf 4)Installing SCP:SL $(tput bold)on custom branch (output enabled)..$(tput sgr0)" 
   ./DepotDownloader -app 996560 -depot 996562 -dir /mnt/server -branch ${BRANCH_TAG} -validate # keeping this normal if debugging is needed
 fi
 
@@ -115,17 +116,19 @@ fi
   rm '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global/SCPDiscord.dll' >/dev/null 2>&1
   echo "$(tput setaf 5)Installing SCPDiscord Plugin."
 
-  echo "$(tput setaf 5)Grabbing plugin and dependencies.."
+  echo "$(tput setaf 5)SCPDiscord: Grabbing plugin and dependencies.."
   wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/dependencies.zip -P '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global'
   wget -q https://github.com/KarlOfDuty/SCPDiscord/releases/latest/download/SCPDiscord.dll -P '/mnt/server/.config/SCP Secret Laboratory/LabAPI/plugins/global'
 
 
-  echo "$(tput setaf 5)Extracting dependencies.."
+  echo "$(tput setaf 5)SCPDiscord: Extracting dependencies.."
   unzip -oq '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/dependencies.zip' -d '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/'
   rm '/mnt/server/.config/SCP Secret Laboratory/LabAPI/dependencies/global/dependencies.zip' >/dev/null 2>&1
 else
   echo $(tput setaf 3)"Skipping SCPDiscord Plugin install."$(tput sgr0)
 fi
+
+
 # EXILED installation
 if [[ "${INSTALL_EXILED}" == "true" ]]; then
   echo "$(tput setaf 4)Downloading $(tput setaf 1)EXILED $(tput setaf 4)installer."
@@ -152,7 +155,7 @@ else
 fi
 
 
-# Cleanup :p
+# Cleanup, I also silenced rm if it doesn't find the file.
 echo "$(tput setaf 5)Cleaning up..$(tput sgr 0)"
 rm /mnt/server/core >/dev/null 2>&1
 rm /mnt/server/Exiled.Installer-Linux >/dev/null 2>&1
