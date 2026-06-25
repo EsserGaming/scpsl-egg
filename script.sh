@@ -77,27 +77,6 @@ cd /mnt/server || {
 # Ensure permissions are correct
 chmod +x LocalAdmin SCPSL.x86_64
 
-#Start egg configuration
-mkdir -p .egg
-# start.sh configuration
-echo "$(tput setaf 4)Configuring start.sh..$(tput sgr0)"
-rm ./.egg/start.sh >/dev/null 2>&1
-touch "./.egg/start.sh"
-chmod +x ./.egg/start.sh
-
-if [ "${INSTALL_SCPDBOT}" == "true" ]; then
-  echo "#!/bin/bash
-    ./.egg/SCPDBot/scpdiscord --config ./.egg/SCPDBot/config.yml &
-    ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
-  echo "$(tput setaf 2)Finished configuring start.sh for LocalAdmin and SCPDiscord.$(tput sgr0)"
-
-else
-  echo "#!/bin/bash
-    ./LocalAdmin \${SERVER_PORT}" >>./.egg/start.sh
-  echo "$(tput setaf 2)Finished configuring start.sh for LocalAdmin.$(tput sgr0)"
-
-fi
-
 #Install SCPDiscord Bot
 if [ "${INSTALL_SCPDBOT}" == "true" ]; then
   mkdir -p /mnt/server/.egg/SCPDBot
